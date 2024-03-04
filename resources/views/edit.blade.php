@@ -29,7 +29,7 @@
                     
                         <div class="form-group mt-3">
                             <label for="img" class="">Inserisci immagine di copertina</label>
-                            <input type="file" name="img" class="form-control" required>
+                            <input type="file" name="img" class="form-control">
                         </div>
                     </div>
 

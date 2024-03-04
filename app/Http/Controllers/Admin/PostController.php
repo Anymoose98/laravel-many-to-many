@@ -121,8 +121,10 @@ class PostController extends Controller
         $form_data= $request->all();
         $post = Post::find($id);
 
+        // Titolo
         $post->title = $form_data['title'];
 
+        // Img
         if ($request->hasFile('img')) {
             // Se c'è già un'immagine, cancellala prima di aggiungere la nuova
             if ($post->img != null) {
@@ -133,13 +135,21 @@ class PostController extends Controller
             $path = Storage::disk('public')->put('img', $request->file('img'));
             $post->img = $path;
         }
+
+        // Slug
         $post->slug = $form_data['slug'];
+        
+        // Descrizione
         $post->description = $form_data['description'];
 
         $post->type_id = $form_data['type_id'];
 
         $post->update();
-
+        
+        // Tags
+        if ($request->has('tags')) {
+             $post->tags()->sync($form_data['tags']);
+        }   
         return redirect()->route('admin.posts.index');
 
     }
