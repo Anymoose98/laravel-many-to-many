@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Models\Type;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -32,7 +33,8 @@ class PostController extends Controller
     public function create()
     {
         $types=Type::all();
-        return view('create', compact('types'));
+        $tags=Tag::all();
+        return view('create', compact('types', 'tags'));
     }
 
     /**
