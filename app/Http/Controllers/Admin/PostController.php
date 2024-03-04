@@ -50,20 +50,34 @@ class PostController extends Controller
 
         // salvo i dati
         $post = new Post();
+        // titolo
         $post->title = $form_data['title'];
 
+        // img
         if($request->hasFile('img')){
             $path = Storage::disk('public')->put('img', $request->file('img'));
             $post->img = $path;
         }
 
+        // slug
         $post->slug = $form_data['slug'];
-        $post->description = $form_data['description'];
 
+        // genere
         $post->type_id = $form_data['type_id'];
 
+        
+        // descrizione
+        $post->description = $form_data['description'];
+        
+        
+        
         $post->save();
-
+        
+        // Tags
+        if ($request->has('tags')) {
+            $post->tags()->attach($form_data['tags']);
+        }
+        
         return redirect()->route('admin.posts.index');
     }
 

@@ -43,12 +43,13 @@
                     <div class="form-group mt-3">
                         <label for="tag_id">Seleziona tags</label><br>
                         
-                            @foreach ($tags as $tag)
-                                <div class="mr-3 form-check-inline my-2">
-                                    <input type="checkbox" name="tags[]" value="tag-{{$tag['id']}}" class=>
-                                    <label for="tags[]" class="form_check-label">{{$tag['name']}}</label>
-                                </div>
-                            @endforeach
+                        @foreach ($tags as $tag)
+                        <div class="mr-3 form-check-inline my-2">
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+                            <label for="tag_{{ $tag->id }}" class="form_check-label">{{ $tag->name }}</label>
+                        </div>
+                    @endforeach
+                    
                         
                     </div>
 
