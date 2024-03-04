@@ -10,8 +10,16 @@
             @endif
         </div>
         <div class="col-6">
-            <h1>titolo: <strong>{{$post['title']}} </strong></h1>
+            <h1>Titolo: <strong>{{$post['title']}} </strong></h1>
             <h2>Genere: <strong>{{!empty($post->type->type) ? $post->type->type : 'Non specificato'}}</strong> </h2>
+            <h2>Tags: <br>
+                <strong>@forelse ($post->tags as $tag)
+                    {{$tag->name}}
+                    @empty
+                    Il post non ha tag
+                @endforelse</strong>
+            </h2>
+            
             <h4>{{$post['slug']}}</h4>
             <p>{{$post['description']}}</p>
         </div>
