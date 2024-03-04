@@ -105,7 +105,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $types=Type::all();
-        return view('edit', compact('post','types'));
+        $tags=Tag::all();
+        return view('edit', compact('post','types','tags'));
     }
 
     /**

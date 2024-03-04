@@ -49,6 +49,18 @@
                         </select>
                     </div>
 
+                    {{-- tags --}}
+                     <div class="form-group mt-3">
+                        <label for="tag_id">Seleziona tags</label><br>
+                                
+                        @foreach ($tags as $tag)
+                            <div class="mr-3 form-check-inline my-2">
+                                <input type="checkbox" name="tags[]" value="{{ $tag->id }}" @if(is_array(old('tags')) && in_array($tag->id, old('tags', [])) || $post->tags->contains($tag->id)) checked @endif>
+                                <label for="tag_{{ $tag->id }}" class="form_check-label">{{ $tag->name }}</label>
+                            </div>
+                        @endforeach              
+                     </div>
+
                     <div class="form-group mt-3">
                         <label for="title">Inserisci una descrizione</label><br>
                         <textarea required name="description" placeholder="Inserisci una descrizione" cols="85" rows="5" class="form-control">{{$post->description}}</textarea>
